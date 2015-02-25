@@ -37,8 +37,9 @@ function decro_tutorial_bootstrap_calendar() {
 		$cell = array(
 			'data' => $elements,
 		);
+		$cell['class'][] = 'custom-calendar';
 		if (date('z', $t) == date('z', $current_time)) {
-			$cell['class'] = array('active');
+			$cell['class'][] = 'active';
 		}
 		$current_row[] = $cell;
 
@@ -55,6 +56,11 @@ function decro_tutorial_bootstrap_calendar() {
 		'#rows' => $table_rows,
 		'#attributes' => array(
 			'class' => array('table', 'table-striped'),
+		),
+		'#attached' => array(
+			'js' => array(
+				drupal_get_path('module', 'decro_tutorial') . '/js/decro_tutorial_calendar.init.js',
+			),
 		),
 	);
 	return $build;
